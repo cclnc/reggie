@@ -18,7 +18,7 @@ public class MyMetaObjecthandler implements MetaObjectHandler {
         metaObject.setValue("createTime",LocalDateTime.now());
         metaObject.setValue("updateTime",LocalDateTime.now());
         metaObject.setValue("createUser",BaseContext.getCurrentId());
-        metaObject.setValue("createUser",BaseContext.getCurrentId());
+        metaObject.setValue("updateUser",BaseContext.getCurrentId());
     }
     //更新操作自动填充
     @Override
@@ -30,6 +30,6 @@ public class MyMetaObjecthandler implements MetaObjectHandler {
         log.info("线程id为：{}",id);
 
         metaObject.setValue("updateTime", LocalDateTime.now());
-        metaObject.setValue("updataUser",BaseContext.getCurrentId());
+        metaObject.setValue("updateUser",BaseContext.getCurrentId());
     }
 }
