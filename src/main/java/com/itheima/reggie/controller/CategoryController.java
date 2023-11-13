@@ -43,6 +43,12 @@ public class CategoryController {
             return R.success("分类信息删除成功");
         }
 
+        //根据id修改分类信息
+        @PostMapping
+        public R<String> update(@RequestBody Category category){
+            categoryService.updateById(category);
+            return R.success("修改分类信息成功");
+        }
 
 
 }
