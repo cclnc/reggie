@@ -89,5 +89,22 @@ public class DishController {
         return R.success("修改菜品成功");
     }
 
+    //根据条件查询分类数据，显示在页面的下拉框中
+    @GetMapping("/list")
+    public R<List<Dish>> list(Dish dish){
+        //条件构造器
+        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+        //添加条件
+        queryWrapper.eq(dish.getCategoryId() !=null ,Dish::getCategoryId,dish.getCategoryId());
+        //查询状态为1（启售）的菜品
+        queryWrapper.eq(Dish::getStatus,1);
+        //添加排序条件
+        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> list = dishService.list(queryWrapper);
+
+        return R.success(list);
+    }
+
 
 }
